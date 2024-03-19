@@ -27,8 +27,7 @@ async function BoardPage(props: BoardPagePropsType) {
 
   return (
     <div>
-      <h1>Board {boardInfo.metadata.boardName}</h1>
-      <Board id={boardId} />
+      <Board id={boardId} name={boardInfo?.metadata?.boardName} />
     </div>
   );
 }

@@ -4,8 +4,9 @@ import { RoomProvider } from "@/app/liveblocks.config";
 import { LiveList } from "@liveblocks/client";
 import { ClientSideSuspense } from "@liveblocks/react";
 import Columns from "./Columns";
-
-//creating temporary col data
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 export interface CardType {
   id: string;
@@ -14,16 +15,7 @@ export interface CardType {
   columnId: string;
 }
 
-const defaultCards = [
-  { id: "awx", name: "task1", index: 0, columnId: "col1" },
-  { id: "aww", name: "task2", index: 1, columnId: "col1" },
-  { id: "aw5", name: "task3", index: 2, columnId: "col2" },
-  { id: "aw3", name: "task4", index: 3, columnId: "col3" },
-];
-
-export default function Board({ id }: { id: string }) {
-  const [cards, setCards] = useState(defaultCards);
-
+export default function Board({ id, name }: { id: string; name: string }) {
   return (
     <RoomProvider
       id={id}
@@ -36,6 +28,16 @@ export default function Board({ id }: { id: string }) {
       <ClientSideSuspense fallback={"Loading... "}>
         {() => (
           <>
+            <div className="flex justify-between">
+              <h1 className="text-2xl">Board: {name}</h1>
+              <Link
+                href={`/boards/${id}/settings`}
+                className="flex justify-center items-center gap-1 bg-gray-300/50 px-3 py-1 rounded-md"
+              >
+                <FontAwesomeIcon icon={faCog} />
+                Bard Settings
+              </Link>
+            </div>
             <Columns />
           </>
         )}

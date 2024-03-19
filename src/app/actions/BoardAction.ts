@@ -1,5 +1,6 @@
 "use server";
 import { authOptions } from "@/lib/authOptions";
+import { liveBlocksClient } from "@/lib/liveBlockClient";
 import { Liveblocks, RoomInfo } from "@liveblocks/node";
 import { getServerSession } from "next-auth";
 import uniqid from "uniqid";
@@ -23,4 +24,25 @@ export async function createBoard(name: string): Promise<RoomInfo | boolean> {
     });
   }
   return false;
+}
+export async function addUserEmailToBoard(boardId: string, email: string) {
+  const room = await liveBlocksClient.getRoom(boardId);
+  const usersAccesses = room.usersAccesses;
+  usersAccesses[email] = ["room:write"];
+
+  await liveBlocksClient.updateRoom(boardId, {
+    usersAccesses,
+  });
+  return true;
+}
+
+export async function removeUserAccessEmail(boardId: string, email: string) {
+  const room = await liveBlocksClient.getRoom(boardId);
+  const usersAccesses = room.usersAccesses;
+  delete usersAccesses[email];
+
+  await liveBlocksClient.updateRoom(boardId, {
+    usersAccesses,
+  });
+  return true;
 }
