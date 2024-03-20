@@ -6,6 +6,7 @@ import { useRef } from "react";
 
 function NewBoardAccessForm({ boardId }: { boardId: string }) {
   const router = useRouter();
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const addNewUser = async (formdata: FormData) => {

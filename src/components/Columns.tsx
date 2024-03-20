@@ -31,7 +31,7 @@ function Columns() {
   };
 
   if (!columns) {
-    return;
+    return "no columns found ";
   }
 
   return (
@@ -43,9 +43,12 @@ function Columns() {
         className="flex gap-4"
         ghostClass="opacity-30"
       >
-        {columns?.length > 0 &&
-          columns?.map((column) => <Column {...column} key={column.id} />)}
-        {/* it is a different component */}
+        {columns && columns.map((cols) => <Column {...cols} key={cols.id} />)}
+        
+        {/* {columns?.length > 0 &&
+          columns?.map((column) => <div>i am fine here</div>)} */}
+
+        {/* <Column {...column} key={column.id} /> */}
         <NewColumnForm />
       </ReactSortable>
     </div>

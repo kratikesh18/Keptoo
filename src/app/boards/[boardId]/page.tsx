@@ -27,7 +27,7 @@ async function BoardPage(props: BoardPagePropsType) {
 
   return (
     <div>
-      <Board id={boardId} name={boardInfo?.metadata?.boardName} />
+      <Board id={boardId} name={boardInfo.metadata.boardName.toString()} />
     </div>
   );
 }

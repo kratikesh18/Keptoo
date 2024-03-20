@@ -1,5 +1,4 @@
 "use client";
-
 import { CardType, useMutation } from "@/app/liveblocks.config";
 import { LiveObject } from "@liveblocks/client";
 import { FormEvent } from "react";
@@ -19,6 +18,7 @@ function NewCardForm({ columnId }: { columnId: string }) {
     },
     [columnId]
   );
+
   async function handleNewCardFormSumbit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const input = (e.target as HTMLFormElement).querySelector("input");

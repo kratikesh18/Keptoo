@@ -1,24 +1,26 @@
-import Board from "@/components/Board";
 import Boards from "@/components/Boards";
 import LoginView from "@/components/views/LoginView";
 import { authOptions } from "@/lib/authOptions";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServerSession } from "next-auth";
-import Image from "next/image";
+
 import Link from "next/link";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
+
   if (!session) {
     return <LoginView />;
   }
+
   return (
     <div className=" ">
       <h1 className="text-2xl font-semibold">Your Boards</h1>
       <div>
         <Boards />
       </div>
+
       <div>
         <Link
           className="bg-purple-800 text-white py-2 px-3 flex rounded-md  gap-2 items-center "
@@ -29,7 +31,6 @@ export default async function Home() {
         </Link>
       </div>
 
-      {/* <Board /> */}
     </div>
   );
 }

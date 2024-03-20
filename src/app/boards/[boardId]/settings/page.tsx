@@ -16,6 +16,7 @@ async function BoardSettings({ params }: PageProps) {
   const { boardId } = params;
   const boardInfo = await liveBlocksClient.getRoom(boardId);
   const userEmail = await getUserEmail();
+  
   if (!boardInfo.usersAccesses[userEmail]) {
     return "UnAuthorized Access";
   }

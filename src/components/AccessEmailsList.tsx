@@ -1,5 +1,5 @@
 "use client";
-import { removeUserAccessEmail } from "@/app/actions/BoardAction";
+import { deleteBoard, removeUserAccessEmail } from "@/app/actions/BoardAction";
 import { faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
@@ -12,10 +12,13 @@ function AccessEmailsList({
   emails: string[];
 }) {
   const router = useRouter();
+
   async function handleDelete(email: string) {
     await removeUserAccessEmail(boardId, email);
+    await deleteBoard(boardId);
     router.refresh();
   }
+
   return (
     <ul className="">
       {emails.map((email) => (

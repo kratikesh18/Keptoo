@@ -15,7 +15,7 @@ interface ColumnPropsType {
 function Column({ id, name }: ColumnPropsType) {
   const columnCards = useStorage<CardType[]>((root) => {
     return root.cards
-      .filter((card) => card.columnId === id)
+      .filter((card) => card?.columnId === id)
       .map((card) => ({ ...card }))
       .sort((a, b) => a.index - b.index);
   }, shallow);
@@ -49,11 +49,12 @@ function Column({ id, name }: ColumnPropsType) {
     },
     []
   );
+
   return (
     <div className="w-48 bg-white shadow-md rounded-md p-4 border-4">
       <h3>{name}</h3>
       {columnCards && (
-        <>
+        <div>
           <ReactSortable
             list={columnCards}
             setList={(cards) => setTaskOrderForColumn(cards, id)}
@@ -63,14 +64,14 @@ function Column({ id, name }: ColumnPropsType) {
           >
             {columnCards?.map((card) => (
               <div
-                key={card.id}
+                key={card?.id}
                 className="border-4 bg-slate-300/75 shadow-lg rounded-lg my-2 p-3 "
               >
-                <span>{card.name}</span>
+                <span>{card?.name}</span>
               </div>
             ))}
           </ReactSortable>
-        </>
+        </div>
       )}
       <NewCardForm columnId={id} />
     </div>

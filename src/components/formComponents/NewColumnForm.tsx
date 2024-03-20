@@ -5,17 +5,7 @@ import { FormEvent } from "react";
 import uniqid from "uniqid";
 
 export const NewColumnForm = () => {
-  const handleNewCol = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const iput = (e.target as HTMLFormElement).querySelector("input");
-    if (iput) {
-      const columnName = iput?.value;
-      addColumn(columnName);
-      iput.value = "";
-    }
-  };
-  // const columns = useStorage((storage) => storage.columns);
-  // return JSON.stringify(columns);
+  
   const addColumn = useMutation(({ storage }, columnName) => {
     return storage
       .get("columns")
@@ -23,6 +13,19 @@ export const NewColumnForm = () => {
         new LiveObject({ name: columnName, id: uniqid.time(), index: 9999 })
       );
   }, []);
+
+  const handleNewCol = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const iput = (e.target as HTMLFormElement).querySelector("input");
+    if (iput) {
+      const columnName = iput.value;
+      addColumn(columnName);
+      iput.value = "";
+    }
+  };
+  // const columns = useStorage((storage) => storage.columns);
+  // return JSON.stringify(columns);
+
   return (
     <form
       onSubmit={handleNewCol}

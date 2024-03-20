@@ -30,6 +30,7 @@ export default function Board({ id, name }: { id: string; name: string }) {
           <>
             <div className="flex justify-between">
               <h1 className="text-2xl">Board: {name}</h1>
+
               <Link
                 href={`/boards/${id}/settings`}
                 className="flex justify-center items-center gap-1 bg-gray-300/50 px-3 py-1 rounded-md"
@@ -38,6 +39,7 @@ export default function Board({ id, name }: { id: string; name: string }) {
                 Bard Settings
               </Link>
             </div>
+            I am fine here
             <Columns />
           </>
         )}

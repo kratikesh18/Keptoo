@@ -46,3 +46,8 @@ export async function removeUserAccessEmail(boardId: string, email: string) {
   });
   return true;
 }
+
+export async function deleteBoard(boardId: string) {
+  await liveBlocksClient.deleteRoom(boardId);
+  return true;
+}
