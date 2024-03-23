@@ -125,7 +125,7 @@ function Column({ id, name }: ColumnPropsType) {
             ghostClass="opcity-20"
           >
             {columnCards?.map((card) => (
-              <CardComponent id={card.id} name={card.name} />
+              <CardComponent key={card.id} id={card.id} name={card.name} />
             ))}
           </ReactSortable>
         </div>
