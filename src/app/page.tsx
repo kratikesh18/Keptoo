@@ -1,4 +1,5 @@
 import Boards from "@/components/Boards";
+import InConstructionPage from "@/components/InConstructionPage";
 import LoginView from "@/components/views/LoginView";
 import { authOptions } from "@/lib/authOptions";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +12,8 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return <LoginView />;
+    return <InConstructionPage />;
+    // return <LoginView />;
   }
 
   return (
@@ -30,7 +32,6 @@ export default async function Home() {
           <FontAwesomeIcon icon={faArrowRight} className="h-4" />
         </Link>
       </div>
-
     </div>
   );
 }

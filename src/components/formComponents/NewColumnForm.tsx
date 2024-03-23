@@ -5,7 +5,6 @@ import { FormEvent } from "react";
 import uniqid from "uniqid";
 
 export const NewColumnForm = () => {
-  
   const addColumn = useMutation(({ storage }, columnName) => {
     return storage
       .get("columns")
@@ -23,15 +22,13 @@ export const NewColumnForm = () => {
       iput.value = "";
     }
   };
-  // const columns = useStorage((storage) => storage.columns);
-  // return JSON.stringify(columns);
 
   return (
     <form
       onSubmit={handleNewCol}
-      className="flex justify-center flex-col max-w-sm mt-4 ml-4 "
+      className="flex gap-1 justify-center flex-col max-w-sm mt-4 ml-4 "
     >
-      <input type="text" placeholder="New column name" />
+      <input type="text" placeholder="New column name" className="rounded-md" />
       <button type="submit">Create column</button>
     </form>
   );

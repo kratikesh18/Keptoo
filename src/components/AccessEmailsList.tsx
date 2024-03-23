@@ -15,14 +15,17 @@ function AccessEmailsList({
 
   async function handleDelete(email: string) {
     await removeUserAccessEmail(boardId, email);
-    await deleteBoard(boardId);
+
     router.refresh();
   }
 
   return (
     <ul className="">
-      {emails.map((email) => (
-        <li className="flex  justify-between my-2 gap-8 px-4 py-1 items-center rounded-lg    ">
+      {emails.map((email, index) => (
+        <li
+          key={index}
+          className="flex  justify-between my-2 gap-8 px-4 py-1 items-center rounded-lg    "
+        >
           <span>{email}</span>
           <button className="btn p-4" onClick={() => handleDelete(email)}>
             <FontAwesomeIcon icon={faTrash} />

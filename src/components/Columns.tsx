@@ -6,6 +6,7 @@ import { ReactSortable } from "react-sortablejs";
 import { LiveList, LiveObject, shallow } from "@liveblocks/client";
 
 function Columns() {
+  
   const columns = useStorage(
     (root) => root.columns.map((c) => ({ ...c })),
     shallow
@@ -44,11 +45,7 @@ function Columns() {
         ghostClass="opacity-30"
       >
         {columns && columns.map((cols) => <Column {...cols} key={cols.id} />)}
-        
-        {/* {columns?.length > 0 &&
-          columns?.map((column) => <div>i am fine here</div>)} */}
 
-        {/* <Column {...column} key={column.id} /> */}
         <NewColumnForm />
       </ReactSortable>
     </div>
