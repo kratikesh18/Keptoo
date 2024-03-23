@@ -13,7 +13,8 @@ async function Boards() {
 
   return (
     <div className="my-4 grid md:grid-cols-4 gap-2">
-      {rooms?.length > 0 && rooms.map((room) => <BoardCard BoardInfo={room} />)}
+      {rooms?.length > 0 &&
+        rooms.map((room) => <BoardCard key={room.id} BoardInfo={room} />)}
     </div>
   );
 }
