@@ -1,7 +1,8 @@
+import CardModal from "@/components/views/CardModal";
 import React from "react";
 
-function CardModalPage() {
-  return <div>cardmodelpage</div>;
+function CardModalpage() {
+  return <CardModal />;
 }
 
-export default CardModalPage;
+export default CardModalpage;

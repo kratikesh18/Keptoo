@@ -1,9 +1,8 @@
 "use server";
 import Board from "@/components/Board";
-import { authOptions } from "@/lib/authOptions";
+
 import { liveBlocksClient } from "@/lib/liveBlockClient";
 import { getUserEmail } from "@/lib/userClient";
-import { getServerSession } from "next-auth";
 
 interface BoardPagePropsType {
   params: {
@@ -23,11 +22,11 @@ async function BoardPage(props: BoardPagePropsType) {
 
   const hasAccess = userAccess && [...userAccess].includes("room:write");
 
+  
   if (!hasAccess) {
     return <div>Access Denied</div>;
   }
 
-  
   return (
     <div>
       <Board id={boardId} name={boardInfo.metadata.boardName.toString()} />

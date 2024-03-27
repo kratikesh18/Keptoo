@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { updateBoard } from "@/app/actions/BoardAction";
 import { useRouter } from "next/navigation";
-
+import { BoardContextProvider } from "@/components/BoardContext";
 export interface CardType {
   id: string;
   name: string;
@@ -34,47 +34,49 @@ export default function Board({ id, name }: { id: string; name: string }) {
     }
   }
   return (
-    <RoomProvider
-      id={id}
-      initialPresence={{}}
-      initialStorage={{
-        columns: new LiveList(),
-        cards: new LiveList(),
-      }}
-    >
-      <ClientSideSuspense fallback={"Loading... "}>
-        {() => (
-          <div>
-            <div className="flex justify-between ">
-              <div className="flex text-2xl items-center ">
-                <h1 className="">Board:</h1>
-                {!renameMode && (
-                  <h1 onClick={() => setRenameMode(true)}>{name}</h1>
-                )}
-                {renameMode && (
-                  <form onSubmit={handleBoardRename}>
-                    <input
-                      type="text"
-                      defaultValue={name}
-                      className="font-semibold block active:border-none rounded-xl text-xl "
-                    />
-                  </form>
-                )}
+    <BoardContextProvider>
+      <RoomProvider
+        id={id}
+        initialPresence={{}}
+        initialStorage={{
+          columns: new LiveList(),
+          cards: new LiveList(),
+        }}
+      >
+        <ClientSideSuspense fallback={"Loading... "}>
+          {() => (
+            <div>
+              <div className="flex justify-between ">
+                <div className="flex text-2xl items-center ">
+                  <h1 className="">Board:</h1>
+                  {!renameMode && (
+                    <h1 onClick={() => setRenameMode(true)}>{name}</h1>
+                  )}
+                  {renameMode && (
+                    <form onSubmit={handleBoardRename}>
+                      <input
+                        type="text"
+                        defaultValue={name}
+                        className="font-semibold block active:border-none rounded-xl text-xl "
+                      />
+                    </form>
+                  )}
+                </div>
+                <Link
+                  href={`/boards/${id}/settings`}
+                  className="flex justify-center items-center gap-1 bg-gray-300/50 px-3 py-1 rounded-md"
+                >
+                  <FontAwesomeIcon icon={faCog} />
+                  Board Settings
+                </Link>
               </div>
-              <Link
-                href={`/boards/${id}/settings`}
-                className="flex justify-center items-center gap-1 bg-gray-300/50 px-3 py-1 rounded-md"
-              >
-                <FontAwesomeIcon icon={faCog} />
-                Board Settings
-              </Link>
+              <div className="mt-4">
+                <Columns />
+              </div>
             </div>
-            <div className="mt-4">
-              <Columns />
-            </div>
-          </div>
-        )}
-      </ClientSideSuspense>
-    </RoomProvider>
+          )}
+        </ClientSideSuspense>
+      </RoomProvider>
+    </BoardContextProvider>
   );
 }

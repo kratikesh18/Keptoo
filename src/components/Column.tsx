@@ -68,9 +68,10 @@ function Column({ id, name }: ColumnPropsType) {
 
   const deleteColumn = useMutation(({ storage }, columnId) => {
     const columns = storage.get("columns");
-    const delColIndex = columns.findIndex((c) => c.toObject().id === id);
+    const delColIndex = columns.findIndex((c) => c.toObject().id === columnId);
     columns.delete(delColIndex);
   }, []);
+
   async function handleColRename(e: FormEvent) {
     e.preventDefault();
     const input = (e.target as HTMLFormElement).querySelector("input");
