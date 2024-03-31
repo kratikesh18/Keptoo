@@ -7,6 +7,8 @@ import { Placeholder } from "@tiptap/extension-placeholder";
 import { Collaboration } from "@tiptap/extension-collaboration";
 import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
 import { useSelf } from "@/app/liveblocks.config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBold } from "@fortawesome/free-solid-svg-icons";
 
 type EditorProps = {
   doc: Doc;
@@ -30,14 +32,25 @@ function DescriptionEditor({ doc, provider, cardId }: EditorProps) {
         emptyEditorClass: "is-editor-empty",
         placeholder: "Task description ...",
       }),
-      Collaboration.configure({ document: doc, field: cardId }),
-      CollaborationCursor.configure({ provider, user: userInfo }),
+      Collaboration.configure({
+        document: doc,
+        field: cardId,
+      }),
+
+      CollaborationCursor.configure({
+        provider,
+        user: userInfo,
+      }),
     ],
   });
   return (
     <div>
+      <div className="">
+        <button onClick={() => editor?.chain().focus().toggleBold().run()}>
+          <FontAwesomeIcon icon={faBold} />
+        </button>
+      </div>
       <EditorContent editor={editor} />
-      
     </div>
   );
 }

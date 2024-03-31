@@ -1,5 +1,5 @@
 import Boards from "@/components/Boards";
-// import InConstructionPage from "@/components/InConstructionPage";
+
 import LoginView from "@/components/views/LoginView";
 import { authOptions } from "@/lib/authOptions";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -12,8 +12,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    // return <InConstructionPage />;
-    return <LoginView />;
+    return <LoginView />
   }
 
   return (
@@ -25,7 +24,7 @@ export default async function Home() {
 
       <div>
         <Link
-          className="bg-purple-800 text-white py-2 px-3 flex rounded-md  gap-2 items-center "
+          className="bg-purple-800 text-white py-2 px-8 flex w-fit  rounded-md  gap-2 items-center "
           href={"/new-board"}
         >
           Create New Board

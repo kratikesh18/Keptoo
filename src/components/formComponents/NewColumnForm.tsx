@@ -29,7 +29,7 @@ export const NewColumnForm = () => {
       className="flex gap-1 justify-center flex-col max-w-sm mt-4 ml-4 "
     >
       <input type="text" placeholder="New column name" className="rounded-md" />
-      <button type="submit">Create column</button>
+      <button type="submit" >Create column</button>
     </form>
   );
 };

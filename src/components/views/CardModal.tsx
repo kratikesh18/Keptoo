@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons/faEllipsisH";
 import { faFileLines } from "@fortawesome/free-solid-svg-icons";
 import DeleteConcent from "../DeleteConcent";
-// import CardDescription from "../CardDescription";
+import CardDescription from "../CardDescription";
 
 function CardModal() {
   const router = useRouter();
@@ -25,7 +25,7 @@ function CardModal() {
     if (params.cardid && setOpenCard) {
       setOpenCard(params.cardId.toString());
     }
-  }, [params]);
+  }, [params, setOpenCard]);
 
   const handleBackdropClick = () => {
     router.back();
@@ -105,7 +105,7 @@ function CardModal() {
               <FontAwesomeIcon icon={faFileLines} />
               Description
             </h2>
-            {/* <CardDescription /> */}
+            <CardDescription />
           </div>
         )}
       </div>
