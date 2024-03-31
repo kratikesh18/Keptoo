@@ -1,6 +1,6 @@
 "use client";
 import { useMutation } from "@/app/liveblocks.config";
-import { LiveObject } from "@liveblocks/client";
+import { LiveObject } from "@liveblocks/core";
 import { FormEvent } from "react";
 import uniqid from "uniqid";
 

@@ -3,7 +3,7 @@ import { ColumnType, useMutation, useStorage } from "@/app/liveblocks.config";
 import Column from "./Column";
 import { NewColumnForm } from "./formComponents/NewColumnForm";
 import { ReactSortable } from "react-sortablejs";
-import { LiveList, LiveObject, shallow } from "@liveblocks/client";
+import { LiveList, LiveObject, shallow } from "@liveblocks/core";
 
 function Columns() {
   

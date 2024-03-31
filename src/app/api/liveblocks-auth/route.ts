@@ -2,11 +2,6 @@ import { authOptions } from "@/lib/authOptions";
 import { liveBlocksClient } from "@/lib/liveBlockClient";
 import { getServerSession } from "next-auth";
 
-// const liveblocks = new Liveblocks({
-//   secret:
-//     "sk_dev_CC24HwiY6xuffe2s4331HYR0iC6GsZJfk1zzdpC-vRe2_tyuUmzlDE7DEHurmVQm",
-// });
-
 export async function POST(request: Request) {
   // Get the current user from your database
   const session = await getServerSession(authOptions);
@@ -35,3 +30,9 @@ export async function POST(request: Request) {
 
   return new Response(body, { status });
 }
+
+// ************* GARBAGE********//
+// const liveblocks = new Liveblocks({
+//   secret:
+//     "sk_dev_CC24HwiY6xuffe2s4331HYR0iC6GsZJfk1zzdpC-vRe2_tyuUmzlDE7DEHurmVQm",
+// });

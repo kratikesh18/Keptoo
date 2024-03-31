@@ -3,7 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { FormEvent, useContext, useEffect, useState } from "react";
 import { BoardContext, BoardContextProps } from "../BoardContext";
 import { CardType, useMutation, useStorage } from "@/app/liveblocks.config";
-import { shallow } from "@liveblocks/client";
+import { shallow } from "@liveblocks/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons/faEllipsisH";
 import { faFileLines } from "@fortawesome/free-solid-svg-icons";
@@ -81,7 +81,7 @@ function CardModal() {
             </button>
           </div>
         )}
-        
+
         {editMode && (
           <div className="">
             <form

@@ -22,13 +22,13 @@ async function BoardPage(props: BoardPagePropsType) {
 
   const hasAccess = userAccess && [...userAccess].includes("room:write");
 
-  
   if (!hasAccess) {
     return <div>Access Denied</div>;
   }
 
   return (
     <div>
+      {/* test board */}
       <Board id={boardId} name={boardInfo.metadata.boardName.toString()} />
     </div>
   );

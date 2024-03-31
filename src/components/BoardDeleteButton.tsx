@@ -7,10 +7,13 @@ import React from "react";
 
 function BoardDeleteButton({ boardId }: { boardId: string }) {
   const router = useRouter();
+
+  // function for delete board
   const handleDeleteBoard = async () => {
     await deleteBoard(boardId);
     router.push("/");
   };
+
   return (
     <button
       className="bg-red-700 flex justify-center items-center gap-2 h-full self-center py-2 text-white rounded-md px-3 text-sm"

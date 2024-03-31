@@ -1,19 +1,17 @@
 "use client";
-
-import React, { FormEvent, HTMLInputTypeAttribute, useState } from "react";
-// import { CardType } from "./Board";
+import React, { FormEvent,  useState } from "react";
 import { ReactSortable } from "react-sortablejs";
 import { CardType, useMutation, useStorage } from "@/app/liveblocks.config";
-import { shallow } from "@liveblocks/client";
+import { shallow } from "@liveblocks/core";
 import NewCardForm from "./formComponents/NewCardForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash";
+
 import {
   faClose,
   faEllipsisVertical,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons/faEllipsisH";
+
 import CardComponent from "./CardComponent";
 
 interface ColumnPropsType {

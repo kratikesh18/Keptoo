@@ -1,7 +1,7 @@
 "use client";
 import React, { FormEvent, useState } from "react";
 import { RoomProvider } from "@/app/liveblocks.config";
-import { LiveList } from "@liveblocks/client";
+import { LiveList } from "@liveblocks/core";
 import { ClientSideSuspense } from "@liveblocks/react";
 import Columns from "./Columns";
 import Link from "next/link";
@@ -21,6 +21,7 @@ export default function Board({ id, name }: { id: string; name: string }) {
   const [renameMode, setRenameMode] = useState(false);
   const router = useRouter();
 
+  // board rename function
   async function handleBoardRename(e: FormEvent) {
     e.preventDefault();
     const input = (e.target as HTMLFormElement).querySelector("input");
@@ -33,6 +34,7 @@ export default function Board({ id, name }: { id: string; name: string }) {
       router.refresh();
     }
   }
+
   return (
     <BoardContextProvider>
       <RoomProvider
