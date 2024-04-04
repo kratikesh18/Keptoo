@@ -2,17 +2,32 @@
 import { useParams, useRouter } from "next/navigation";
 import React, { FormEvent, useContext, useEffect, useState } from "react";
 import { BoardContext, BoardContextProps } from "../BoardContext";
-import { CardType, useMutation, useStorage } from "@/app/liveblocks.config";
+import {
+  CardType,
+  useMutation,
+  useStorage,
+  useThreads,
+} from "@/app/liveblocks.config";
 import { shallow } from "@liveblocks/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons/faEllipsisH";
 import { faFileLines } from "@fortawesome/free-solid-svg-icons";
 import DeleteConcent from "../DeleteConcent";
 import CardDescription from "../CardDescription";
+import { faComments } from "@fortawesome/free-solid-svg-icons/faComments";
+import { Composer, Thread } from "@liveblocks/react-comments";
+import "@liveblocks/react-comments/styles.css";
 
 function CardModal() {
   const router = useRouter();
   const params = useParams();
+  const { threads } = useThreads({
+    query: {
+      metadata: {
+        cardId: params.cardId.toString(),
+      },
+    },
+  });
   const [editMode, setEditMode] = useState(false);
 
   const { setOpenCard } = useContext<BoardContextProps>(BoardContext);
@@ -71,11 +86,11 @@ function CardModal() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white p-4 mt-8 max-w-xs mx-auto rounded-md"
+        className="bg-white px-4 pt-4 pb-1 mt-8 max-w-sm mx-auto rounded-md"
       >
         {!editMode && (
           <div className="flex justify-between">
-            <h1 className="text-lg font-semibold">{card?.name}</h1>
+            <h1 className="text-2xl font-semibold">{card?.name}</h1>
             <button className="text-gray-500" onClick={() => setEditMode(true)}>
               <FontAwesomeIcon icon={faEllipsisH} />
             </button>
@@ -106,6 +121,24 @@ function CardModal() {
               Description
             </h2>
             <CardDescription />
+            <h2 className="flex gap-2 items-center my-4">
+              <FontAwesomeIcon icon={faComments} />
+              Comments
+            </h2>
+            <div className="-mx-4">
+              {threads &&
+                threads.map((thread) => (
+                  <div key={thread.id}>
+                    <Thread thread={thread} id={thread.id} />
+                  </div>
+                ))}
+
+              {threads?.length === 0 && (
+                <div>
+                  <Composer metadata={{ cardId: params.cardId.toString() }} />
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

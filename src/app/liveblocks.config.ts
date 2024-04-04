@@ -33,6 +33,19 @@ type Storage = {
   cards: LiveList<LiveObject<CardType>>;
 };
 
+type UserMeta = {
+  id: string;
+  info: {
+    name: string;
+    email: string;
+    image: string;
+  };
+};
+type RoomEvent = {};
+
+type ThreadMetadata = {
+  cardId: string;
+};
 export const {
   RoomProvider,
   useMyPresence,
@@ -41,11 +54,22 @@ export const {
   useRoom,
   useSelf,
   useOthers,
+  useThreads,
   /* ...all the other hooks you’re using... */
 } = createRoomContext<
   Presence,
-  Storage
+  Storage,
+  UserMeta,
+  RoomEvent,
+  ThreadMetadata
   /* UserMeta, RoomEvent, ThreadMetadata */
->(client);
+>(client, {
+  resolveUsers: async ({ userIds }) => {
+    const params = new URLSearchParams(userIds.map((id) => ["ids", id]));
+    const response = await fetch(`/api/users?${params.toString()}`);
+
+    return await response.json()
+  },
+});
 
 // publicApiKey: process.env.LIVEBLOCK_PUBLIC_API_KEY!,
