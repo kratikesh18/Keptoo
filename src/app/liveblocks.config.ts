@@ -64,12 +64,12 @@ export const {
   ThreadMetadata
   /* UserMeta, RoomEvent, ThreadMetadata */
 >(client, {
-  resolveUsers: async ({ userIds }) => {
-    const params = new URLSearchParams(userIds.map((id) => ["ids", id]));
-    const response = await fetch(`/api/users?${params.toString()}`);
+  // resolveUsers: async ({ userIds }) => {
+  //   const params = new URLSearchParams(userIds.map((id) => ["ids", id]));
+  //   const response = await fetch(`/api/users?${params.toString()}`);
 
-    return await response.json()
-  },
+  //   return await response.json()
+  // },
 });
 
 // publicApiKey: process.env.LIVEBLOCK_PUBLIC_API_KEY!,

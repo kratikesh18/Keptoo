@@ -11,9 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBold,
   faHeading,
+  faItalic,
   faUnderline,
 } from "@fortawesome/free-solid-svg-icons";
-import { faItalic } from "@fortawesome/free-solid-svg-icons/faItalic";
 import Underline from "@tiptap/extension-underline";
 
 type EditorProps = {
@@ -52,27 +52,21 @@ function DescriptionEditor({ doc, provider, cardId }: EditorProps) {
   });
   return (
     <div>
-      <div className="flex gap-2 mb-1 editor-btns">
+      <div className="flex gap-4flex gap-2 mb-1 editor-btns">
         <button
           className={editor?.isActive("bold") ? "active" : ""}
           onClick={() => editor?.chain().focus().toggleBold().run()}
         >
           <FontAwesomeIcon icon={faBold} />
         </button>
-        <button
-          className={editor?.isActive("italic") ? "active" : ""}
-          onClick={() => editor?.chain().focus().toggleItalic().run()}
-        >
+        <button onClick={() => editor?.chain().focus().toggleItalic().run()}>
           <FontAwesomeIcon icon={faItalic} />
         </button>
-        <button
-          className={editor?.isActive("underline") ? "active" : ""}
-          onClick={() => editor?.chain().focus().toggleUnderline().run()}
-        >
+        <button onClick={() => editor?.chain().focus().toggleUnderline().run()}>
           <FontAwesomeIcon icon={faUnderline} />
         </button>
+
         <button
-          className={editor?.isActive("heading") ? "active" : ""}
           onClick={() =>
             editor?.chain().focus().toggleHeading({ level: 2 }).run()
           }
