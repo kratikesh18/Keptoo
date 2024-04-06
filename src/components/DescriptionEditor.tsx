@@ -25,10 +25,6 @@ type EditorProps = {
 function DescriptionEditor({ doc, provider, cardId }: EditorProps) {
   const userInfo = useSelf((me) => me.info);
 
-  if (!userInfo) {
-    return null;
-  }
-
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -45,11 +41,16 @@ function DescriptionEditor({ doc, provider, cardId }: EditorProps) {
 
       CollaborationCursor.configure({
         provider,
-        user: userInfo,
+        user: userInfo || {},
       }),
       Underline.configure(),
     ],
   });
+
+  if (!userInfo) {
+    return null;
+  }
+
   return (
     <div>
       <div className="flex gap-4flex gap-2 mb-1 editor-btns">

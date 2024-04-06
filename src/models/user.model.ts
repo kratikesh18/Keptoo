@@ -1,6 +1,9 @@
 import { Schema, model, models } from "mongoose";
+type ModelsType = {
+  User: any;
+};
 
-type UserType = {
+export type UserType = {
   name: string;
   email: string;
   image: string;
@@ -23,4 +26,4 @@ const userScheama = new Schema({
   },
 });
 
-export const User = models?.User || model("User", userScheama);
+export const User = (models as ModelsType)?.User || model("User", userScheama);

@@ -6,6 +6,16 @@ import { createRoomContext } from "@liveblocks/react";
 const client = createClient({
   authEndpoint: "/api/liveblocks-auth",
   throttle: 100,
+  resolveUsers: async ({ userIds }) => {
+    const params = new URLSearchParams(userIds.map((id) => ["ids", id]));
+    const response = await fetch(`/api/users?${params.toString()}`);
+
+    return await response.json();
+  },
+  resolveMentionSuggestions: async ({ text }) => {
+    const response = await fetch(`/api/users?search=${text}`);
+    return await response.json();
+  },
 });
 
 type Presence = {
@@ -46,6 +56,7 @@ type RoomEvent = {};
 type ThreadMetadata = {
   cardId: string;
 };
+
 export const {
   RoomProvider,
   useMyPresence,
@@ -63,13 +74,6 @@ export const {
   RoomEvent,
   ThreadMetadata
   /* UserMeta, RoomEvent, ThreadMetadata */
->(client, {
-  // resolveUsers: async ({ userIds }) => {
-  //   const params = new URLSearchParams(userIds.map((id) => ["ids", id]));
-  //   const response = await fetch(`/api/users?${params.toString()}`);
-
-  //   return await response.json()
-  // },
-});
+>(client);
 
 // publicApiKey: process.env.LIVEBLOCK_PUBLIC_API_KEY!,

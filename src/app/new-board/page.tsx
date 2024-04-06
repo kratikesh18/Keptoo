@@ -1,7 +1,6 @@
 "use client";
 import { redirect } from "next/navigation";
 import { createBoard } from "../actions/BoardAction";
-import { RoomInfo } from "@liveblocks/node";
 
 function NewBoardPage() {
   const handleCreateBoard = async (formData: FormData) => {
