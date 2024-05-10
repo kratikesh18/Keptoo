@@ -1,10 +1,9 @@
-import { useRoom } from "@/app/liveblocks.config";
-import { Room } from "@liveblocks/core";
 import LiveblocksProvider from "@liveblocks/yjs";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Doc } from "yjs";
 import DescriptionEditor from "./DescriptionEditor";
+import { useRoom } from "@/app/liveblocks.config";
 
 function CardDescription() {
   const { cardId } = useParams();
@@ -34,6 +33,7 @@ function CardDescription() {
   if (!doc || !provider) {
     return null;
   }
+  
   return (
     <div>
       <DescriptionEditor

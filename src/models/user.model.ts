@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+
 type ModelsType = {
   User: any;
 };

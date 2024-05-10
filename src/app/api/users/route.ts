@@ -4,6 +4,7 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
+
   const connectionString = process.env.MONGODB_URI!;
 
   if (!connectionString) {
@@ -13,14 +14,19 @@ export async function GET(req: NextRequest) {
   await mongoose.connect(connectionString);
 
   let users = [];
+
   if (url.searchParams.get("ids")) {
+    console.log("console is loggin form here", url.searchParams);
     const emails = url.searchParams.getAll("ids");
     users = await User.find({ email: emails });
   }
 
+  //   this is the endpoint for the mentions because search  parammeter
   if (url.searchParams.has("search")) {
     const searchPhrase = url.searchParams.get("search");
+
     const searchRegEx = `.*${searchPhrase}.*`;
+
     users = await User.find({
       $or: [
         { name: { $regex: searchRegEx } },

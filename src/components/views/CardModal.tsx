@@ -8,6 +8,9 @@ import {
   useStorage,
   useThreads,
 } from "@/app/liveblocks.config";
+import { Composer, Thread } from "@liveblocks/react-comments";
+import "@liveblocks/react-comments/styles.css";
+
 import { shallow } from "@liveblocks/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons/faEllipsisH";
@@ -15,12 +18,12 @@ import { faFileLines } from "@fortawesome/free-solid-svg-icons";
 import DeleteConcent from "../DeleteConcent";
 import CardDescription from "../CardDescription";
 import { faComments } from "@fortawesome/free-solid-svg-icons/faComments";
-import { Composer, Thread } from "@liveblocks/react-comments";
-import "@liveblocks/react-comments/styles.css";
 
 function CardModal() {
   const router = useRouter();
   const params = useParams();
+
+  // getting the threads from liveblocks config
   const { threads } = useThreads({
     query: {
       metadata: {
@@ -79,6 +82,7 @@ function CardModal() {
     }
     router.back();
   };
+
   return (
     <div
       className="fixed inset-0 bg-black/70 backdrop-blur-sm"
@@ -129,13 +133,13 @@ function CardModal() {
               {threads &&
                 threads.map((thread) => (
                   <div key={thread.id}>
-                    <Thread thread={thread} id={thread.id} />
+                    <Thread thread={thread} id={thread?.id} />
                   </div>
                 ))}
 
               {threads?.length === 0 && (
                 <div>
-                  <Composer metadata={{ cardId: params.cardId.toString() }} />
+                  <Composer metadata={{ cardId: params?.cardId.toString() }} />
                 </div>
               )}
             </div>

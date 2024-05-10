@@ -18,7 +18,7 @@ function CardComponent({ id, name }: { id: string; name: string }) {
     if (!params.cardId && openCard) {
       router.push(`/boards/${params.boardId}`);
     }
-  }, [params.cardId, params, openCard, router]);
+  }, [params.cardId]);
 
   return (
     <Link
