@@ -1,7 +1,6 @@
 "use server";
 import { liveBlocksClient } from "@/lib/liveBlockClient";
 import { getUserEmail } from "@/lib/userClient";
-
 import React from "react";
 import { BoardCard } from "./BoardCard";
 

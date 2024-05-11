@@ -4,13 +4,15 @@ import { createBoard } from "../actions/BoardAction";
 
 function NewBoardPage() {
   const handleCreateBoard = async (formData: FormData) => {
-    const boardName = formData.get("boardName");
+    const boardName = formData.get("boardName")?.toString() || "";
 
-    const roomInfo = await createBoard(boardName as string);
+    const roomInfo = await createBoard(boardName);
+
     if (roomInfo) {
-      redirect(`/boards/${roomInfo?.id}`);
+      redirect(`/boards/${roomInfo.id}`);
     }
   };
+
   return (
     <div>
       <form action={handleCreateBoard}>

@@ -5,13 +5,13 @@ import { Liveblocks, RoomInfo } from "@liveblocks/node";
 import { getServerSession } from "next-auth";
 import uniqid from "uniqid";
 
-export async function createBoard(name: string): Promise<RoomInfo | boolean> {
+export async function createBoard(name: string): Promise<false | RoomInfo> {
   const liveBlocksClient = new Liveblocks({
     secret: process.env.LIVEBLOCK_SECRET!,
   });
 
   const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
+  const email = session?.user?.email?.toString();
 
   if (email) {
     const roomId = uniqid.time();

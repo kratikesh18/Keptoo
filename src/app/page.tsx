@@ -1,5 +1,4 @@
 import Boards from "@/components/Boards";
-
 import LoginView from "@/components/views/LoginView";
 import { authOptions } from "@/lib/authOptions";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +15,7 @@ export default async function Home() {
   }
 
   return (
-    <div className=" ">
+    <div>
       <h1 className="text-2xl font-semibold">Your Boards</h1>
       <div>
         <Boards />
