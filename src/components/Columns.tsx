@@ -6,7 +6,6 @@ import { ReactSortable } from "react-sortablejs";
 import { LiveList, LiveObject, shallow } from "@liveblocks/core";
 
 function Columns() {
-  
   const columns = useStorage(
     (root) => root.columns.map((c) => ({ ...c })),
     shallow
@@ -36,18 +35,18 @@ function Columns() {
   }
 
   return (
-    <div className="">
+    <div className="flex flex-col items-center gap-3">
       <ReactSortable
         list={columns}
         setList={updateColumnsOrder}
         group={"board-column"}
-        className="flex gap-4"
+        className="grid grid-flow-col auto-cols-fr gap-4"
+        // className=""
         ghostClass="opacity-30"
       >
         {columns && columns.map((cols) => <Column {...cols} key={cols.id} />)}
-
-        <NewColumnForm />
       </ReactSortable>
+      <NewColumnForm />
     </div>
   );
 }

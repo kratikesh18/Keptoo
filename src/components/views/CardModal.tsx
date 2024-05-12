@@ -31,6 +31,7 @@ function CardModal() {
       },
     },
   });
+  
   const [editMode, setEditMode] = useState(false);
 
   const { setOpenCard } = useContext<BoardContextProps>(BoardContext);

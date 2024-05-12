@@ -1,5 +1,5 @@
 "use client";
-import React, { FormEvent,  useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { ReactSortable } from "react-sortablejs";
 import { CardType, useMutation, useStorage } from "@/app/liveblocks.config";
 import { shallow } from "@liveblocks/core";
@@ -81,7 +81,7 @@ function Column({ id, name }: ColumnPropsType) {
   }
 
   return (
-    <div className="max-w-xs flex flex-col bg-white shadow-md rounded-md p-4 border-4 border-gray-200">
+    <div className="flex w-fit flex-col bg-red-300 shadow-md rounded-md p-2 border-4 border-gray-200">
       {!renameMode && (
         <div className="flex justify-between">
           <h3 className="font-semibold cursor-move">{name}</h3>
@@ -90,6 +90,7 @@ function Column({ id, name }: ColumnPropsType) {
           </button>
         </div>
       )}
+
       {renameMode && (
         <div>
           <form onSubmit={handleColRename} className="">
@@ -105,8 +106,9 @@ function Column({ id, name }: ColumnPropsType) {
             <FontAwesomeIcon icon={faTrashAlt} />
             Delete Coulumn
           </button>
+
           <button
-            className="mt-4 w-full uppercase text-sm font-bold text-gray-500 flex gap-1 justify-center  items-center"
+            className="mt-4 w-full uppercase text-sm font-bold text-gray-500 flex gap-1 justify-center items-center"
             onClick={() => setRenameMode(false)}
           >
             <FontAwesomeIcon icon={faClose} />
@@ -114,21 +116,30 @@ function Column({ id, name }: ColumnPropsType) {
           </button>
         </div>
       )}
+
       {!renameMode && columnCards && (
-        <div className="h-full">
+        <div className="flex flex-col justify-between bg-transparent">
+          {/* for the sortable cards in the column */}
           <ReactSortable
             list={columnCards}
             setList={(cards) => setTaskOrderForColumn(cards, id)}
             group={"cards"}
-            className=" h-full my-4 bg-white"
+            className="h-full my-4 bg-white rounded-lg"
             ghostClass="opcity-20"
           >
             {columnCards?.map((card) => (
               <CardComponent key={card.id} id={card.id} name={card.name} />
             ))}
           </ReactSortable>
+          {/* 
+          {!renameMode && (
+            <div className="self-end">
+              <NewCardForm columnId={id} />
+            </div>
+          )} */}
         </div>
       )}
+
       {!renameMode && (
         <div className="self-end">
           <NewCardForm columnId={id} />

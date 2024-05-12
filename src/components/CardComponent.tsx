@@ -26,7 +26,7 @@ function CardComponent({ id, name }: { id: string; name: string }) {
       key={id}
       className="border-4 block bg-slate-300/75 shadow-lg rounded-lg my-2 p-3 "
     >
-      <span>{name}</span>
+      <span className="text-sm md:text-base">{name}</span>
     </Link>
   );
 }

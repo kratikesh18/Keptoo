@@ -1,6 +1,5 @@
 "use server";
 import Board from "@/components/Board";
-
 import { liveBlocksClient } from "@/lib/liveBlockClient";
 import { getUserEmail } from "@/lib/userClient";
 

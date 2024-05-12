@@ -5,6 +5,7 @@ import { FormEvent } from "react";
 import uniqid from "uniqid";
 
 function NewCardForm({ columnId }: { columnId: string }) {
+  
   const addCard = useMutation(
     ({ storage }, cardName) => {
       return storage.get("cards").push(
@@ -31,7 +32,7 @@ function NewCardForm({ columnId }: { columnId: string }) {
 
   return (
     <form onSubmit={handleNewCardFormSumbit}>
-      <input type="text" placeholder="new task" className="w-full rounded-md" />
+      <input type="text" placeholder="New Task" className="w-full rounded-md bg-slate-200 " />
     </form>
   );
 }

@@ -47,32 +47,45 @@ export default function Board({ id, name }: { id: string; name: string }) {
       >
         <ClientSideSuspense fallback={"Loading... "}>
           {() => (
-            <div>
-              <div className="flex justify-between ">
-                <div className="flex text-2xl items-center ">
-                  <h1 className="">Board:</h1>
-                  {!renameMode && (
-                    <h1 onClick={() => setRenameMode(true)}>{name}</h1>
-                  )}
-                  {renameMode && (
-                    <form onSubmit={handleBoardRename}>
-                      <input
-                        type="text"
-                        defaultValue={name}
-                        className="font-semibold block active:border-none rounded-xl text-xl "
-                      />
-                    </form>
-                  )}
+            <div className="w-full   ">
+              <div className="">
+
+                <div className="flex w-full justify-between px-3 pt-4 ">
+
+                  <div className="flex">
+                    <h1 className="">Board:</h1>
+                    {!renameMode && (
+                      <h1
+                        className="pl-1 font-bold text-gray-800"
+                        onClick={() => setRenameMode(true)}
+                      >
+                        {name}
+                      </h1>
+                    )}
+                    {renameMode && (
+                      <form onSubmit={handleBoardRename}>
+                        <input
+                          type="text"
+                          defaultValue={name}
+                          className="font-semibold block active:border-none rounded-xl text-xl  "
+                        />
+                      </form>
+                    )}
+                  </div>
+
+                  {/* board settings */}
+                  <Link
+                    href={`/boards/${id}/settings`}
+                    className="bg-gray-400/90 px-2 rounded-md flex justify-center items-center  "
+                  >
+                    <FontAwesomeIcon icon={faCog} />
+                    <p className="hidden md:block">Board Settings</p>
+                  </Link>
                 </div>
-                <Link
-                  href={`/boards/${id}/settings`}
-                  className="flex justify-center items-center gap-1 bg-gray-300/50 px-3 py-1 rounded-md"
-                >
-                  <FontAwesomeIcon icon={faCog} />
-                  Board Settings
-                </Link>
               </div>
-              <div className="mt-4">
+
+              {/* div for the columns  and their takss */}
+              <div className="py-4 ">
                 <Columns />
               </div>
             </div>
