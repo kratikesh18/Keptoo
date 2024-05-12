@@ -121,7 +121,7 @@ function Column({ id, name }: ColumnPropsType) {
         <div className="flex flex-col justify-between bg-transparent">
           {/* for the sortable cards in the column */}
           <ReactSortable
-            list={columnCards}
+            list={columnCards}  
             setList={(cards) => setTaskOrderForColumn(cards, id)}
             group={"cards"}
             className="h-full my-4 bg-white rounded-lg"

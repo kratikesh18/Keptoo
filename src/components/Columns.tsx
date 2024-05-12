@@ -35,12 +35,12 @@ function Columns() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="mx-auto flex flex-col items-center gap-3 ">
       <ReactSortable
         list={columns}
         setList={updateColumnsOrder}
         group={"board-column"}
-        className="grid grid-flow-col auto-cols-fr gap-4"
+        className="flex justify-center gap-3 flex-wrap  "
         // className=""
         ghostClass="opacity-30"
       >

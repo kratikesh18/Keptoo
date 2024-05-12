@@ -16,20 +16,30 @@ export const NewColumnForm = () => {
   const handleNewCol = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const iput = (e.target as HTMLFormElement).querySelector("input");
+
     if (iput) {
       const columnName = iput.value;
+      if (columnName.trim().length == 0) {
+        return;
+      }
       addColumn(columnName);
       iput.value = "";
     }
   };
 
   return (
-    <form
-      onSubmit={handleNewCol}
-      className="flex gap-1 justify-center flex-col max-w-fit  "
-    >
-      <input type="text" placeholder="New column name" className="rounded-md" />
-      <button type="submit">Create column</button>
-    </form>
+    <div>
+      <form
+        onSubmit={handleNewCol}
+        className="flex gap-1 justify-center flex-col max-w-fit  "
+      >
+        <input
+          type="text"
+          placeholder="New column name"
+          className="rounded-md"
+        />
+        <button type="submit">Create column</button>
+      </form>
+    </div>
   );
 };
